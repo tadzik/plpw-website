@@ -1,0 +1,67 @@
+[% WRAPPER ui title = global.conference.name %]
+
+<p>
+Witaj na stronie Polskiego Perl Workshopu 2013!
+</p>
+
+<p>
+Polski Perl Workshop to konferencja przeznaczona nie tylko dla polskich
+entuzjastów języka Perl. Odbędzie się 25-26 maja 2013 w Warszawie.
+Spotkanie integracyjne dla uczestników odbędzie się dzień wcześniej, w piątek 24 maja.
+</p><p>
+Konferencja będzie dwujęzyczna: prezentacje będą zarówno po polsku, jak i po angielsku (niekoniecznie naraz).
+</p><p>
+Rejestracja zostanie otwarta jak tylko ustalimy wszystkie formalności. Powinno to następić na dniach, także bądźcie w pogotowiu. :)
+</p>
+
+<hr />
+
+<p>
+Welcome to Polish Perl Workshop 2013!
+</p>
+
+<p>
+Polish Perl Workshop is a conference dedicated not only to Polish
+enthusiasts of Perl. It will be held on 25-26 May 2013 in Warsaw,
+Poland, plus an pre-conference drinkup on Friday, 24th.
+</p><p>
+The conference will be bilingual: both Polish and English talks will
+appear.
+</p><p>
+The registration will open as soon as we sort out all formalities. It should happen soon, stay tuned. :)
+</p>
+
+<!--
+<p>
+Watch this space for updates, or check the <a href="[% global.request.base_url %][% make_uri_info( 'atom', global.request.language ) %].xml">feed</a>.
+</p>
+-->
+
+[% news = global.news(3);
+   IF news.size > 2;
+     more = news.pop;
+   END;
+ %]
+
+[% IF news.size %]
+<h2>Latest News</h2>
+[% FOREACH item = news %]
+<div class="news-entry">
+ <h3 class="news-header">
+  <span class="news-date">[% date_format(item.datetime, 'date_short') %]</span>
+  <span class="news-title">[% item.title %]</span>
+ </h3>
+ <div class="news-text">
+  [% item.content %]
+ </div>
+</div>
+[% END %]
+[% END %]
+
+[% IF more %]
+<p>
+ <a href="[% make_uri('news') %]" class="news-link">Older announcements</a>
+</p>
+[% END %]
+
+[% END %]
